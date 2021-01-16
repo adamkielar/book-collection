@@ -1,13 +1,19 @@
 [tool.poetry]
 name = "app"
 version = "0.1.0"
-description = ""
+description = "Book Collection"
 authors = ["Adam Kielar <adam.kielar@netguru.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
 Django = "^3.1.5"
 djangorestframework = "^3.12.2"
+psycopg2 = "^2.8.5"
+uwsgi = "^2.0.19"
+boto3 = "^1.16.56"
+django-storages = "^1.11.1"
+django-debug-toolbar = "^3.2"
+factory-boy = "^3.2.0"
 
 [tool.poetry.dev-dependencies]
 
