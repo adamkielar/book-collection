@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -20,12 +20,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '%#a)k^-694+m=0$2hjg7w1or0zpfb$3n*$x9n28g39hdqm^b^l'
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = bool(os.environ.get('DEBUG'))
 
 ALLOWED_HOSTS = []
+ALLOWED_HOSTS.extend(os.environ.get('ALLOWED_HOSTS').split(','))
 
 
 # Application definition
@@ -75,10 +76,14 @@ WSGI_APPLICATION = 'app.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'HOST': os.environ.get('DB_HOST'),
+        'NAME': os.environ.get('DB_NAME'),
+        'USER': os.environ.get('DB_USER'),
+        'PASSWORD': os.environ.get('DB_USER'),
     }
 }
+
 
 
 # Password validation
