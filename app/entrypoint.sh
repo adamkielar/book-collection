@@ -13,5 +13,5 @@ fi
 
 python manage.py flush --no-input
 python manage.py migrate
-uwsgi --http :8000 --master --processes 4 --threads 2 --module app.wsgi --chmod-socket=664 --uid user
+python manage.py runserver 0.0.0.0:8001
 exec "$@"
