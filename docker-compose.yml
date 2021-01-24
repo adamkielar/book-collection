@@ -21,7 +21,8 @@ services:
 
   db:
     <<: *env_file
-    image: postgres:11
+    image: postgres:latest
+    restart: always
     volumes:
     - postgres-data:/var/lib/postgresql/data/
     ports:
