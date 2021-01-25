@@ -3,13 +3,15 @@ from django.contrib.auth import get_user_model
 
 from . import models
 
+User = get_user_model()
+
 
 class TagFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = models.Tag
 
     name = factory.Faker('word')
-    owner = factory.Iterator(get_user_model().objects.all())
+    owner = factory.Iterator(User.objects.all())
 
 
 class AuthorFactory(factory.django.DjangoModelFactory):
@@ -29,7 +31,7 @@ class BookFactory(factory.django.DjangoModelFactory):
     categories = factory.Faker('word', ext_word_list=['{Fiction}', '{Art}', '{History}'])
     average_rating = factory.Faker('pyfloat', left_digits=1, right_digits=2, positive=True, min_value=0, max_value=5)
     ratings_count = factory.Faker('random_number')
-    owner = factory.Iterator(get_user_model().objects.all())
+    owner = factory.Iterator(User.objects.all())
 
     author = factory.SubFactory(AuthorFactory)
 

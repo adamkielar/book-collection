@@ -51,7 +51,7 @@ class Book(Owner):
     ratings_count = models.PositiveIntegerField(blank=True, default=0)
     thumbnail = models.TextField(blank=True, null=True)
 
-    author = models.ForeignKey('Author', related_name='books', on_delete=models.CASCADE)
+    author = models.ForeignKey('Author', on_delete=models.CASCADE)
     tags = models.ManyToManyField('Tag')
 
     class Meta:
