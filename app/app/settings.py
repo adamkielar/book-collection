@@ -10,6 +10,9 @@ DEBUG = bool(os.environ.get('DEBUG'))
 ALLOWED_HOSTS = []
 ALLOWED_HOSTS.extend(os.environ.get('ALLOWED_HOSTS').split(','))
 
+INTERNAL_IPS = []
+INTERNAL_IPS.extend(os.environ.get('INTERNAL_IPS').split(','))
+
 
 # Application definition
 
@@ -20,6 +23,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
     'debug_toolbar',
     'book',
     'core',
@@ -112,3 +116,7 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 AUTH_USER_MODEL = 'core.User'
+
+DEBUG_TOOLBAR_CONFIG = {
+    "SHOW_TOOLBAR_CALLBACK": lambda request: True,
+}
