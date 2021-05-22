@@ -21,6 +21,10 @@ class BookViewSet(viewsets.ModelViewSet):
     filter_backends = [filters.OrderingFilter]
     ordering_fields = ['published_date']
 
+    @count_query
+    def list(self, request, *args, **kwargs):
+        return super().list(request, *args, **kwargs)
+
 
 class BookView(viewsets.ViewSet):
 
